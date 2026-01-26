@@ -1,0 +1,16 @@
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+
+# Идеи редакторов
+.vscode/
+.idea/
+
+# Ваш JSON-файл с задачами (не коммитить)
+tasks.json
