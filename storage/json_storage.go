@@ -9,7 +9,7 @@ import (
 type JSONStorage struct {
 	filename string
 	mu       sync.RWMutex
-	tasks    map[int]models.Task
+	Tasks    map[int]models.Task
 }
 
 func NewJSONStorage(file string) (*JSONStorage, error) {

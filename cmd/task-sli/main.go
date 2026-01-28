@@ -9,15 +9,19 @@ import (
 )
 
 func main() {
-	storage := storage.NewJSONStorage("tasks.json")
+	storage, err := storage.NewJSONStorage("tasks.json")
 
+	if err != nil {
+		fmt.Println("Ошибка создания хранилища:", err)
+		return
+	}
 	// Добавляем тестовую задачу
 	task := models.NewTask("Тест Save()")
 	task.ID = 1
 	storage.tasks[1] = task // пока напрямую, потом через AddTask
 
 	// Сохраняем
-	err := storage.Save()
+	err = storage.Save()
 	if err != nil {
 		fmt.Println("Ошибка Save():", err)
 	} else {
