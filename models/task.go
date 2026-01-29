@@ -20,7 +20,7 @@ type Task struct {
 	UpdatedAt   time.Time  `json:"updatedAt"`
 }
 
-// NewTask является конструкторов Task
+// NewTask является конструктором Task
 func NewTask(description string) Task {
 	return Task{
 		ID:          0,

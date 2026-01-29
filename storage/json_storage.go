@@ -16,6 +16,6 @@ func NewJSONStorage(file string) (*JSONStorage, error) {
 	storage := &JSONStorage{
 		filename: file,
 	}
-	storage.tasks = make(map[int]models.Task)
+	storage.Tasks = make(map[int]models.Task)
 	return storage, nil
 }
