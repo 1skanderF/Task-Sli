@@ -43,10 +43,6 @@ func (s *JSONStorage) Load() error {
 }
 
 func (s *JSONStorage) Save() error {
-	// Блокируем параллельный вызов Save()
-	s.mu.Lock()
-	defer s.mu.Unlock()
-
 	// Задаем имя для временного файла
 	tempFilename := s.filename + ".tmp"
 
@@ -81,13 +77,13 @@ func (s *JSONStorage) Save() error {
 
 func (s *JSONStorage) AddTask(task models.Task) error {
 	s.mu.Lock()
-
+	defer s.mu.Unlock()
 	if _, ok := s.Tasks[task.ID]; ok {
 		return fmt.Errorf("Задача с ID %d уже существует", task.ID)
 	}
 
 	s.Tasks[task.ID] = task
-	s.mu.Unlock()
+
 	if err := s.Save(); err != nil {
 		delete(s.Tasks, task.ID)
 		return fmt.Errorf("Не удалось сохранить задачу: %w", err)
