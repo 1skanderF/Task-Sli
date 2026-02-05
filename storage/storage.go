@@ -91,3 +91,13 @@ func (s *JSONStorage) AddTask(task models.Task) error {
 
 	return nil
 }
+
+func (s *JSONStorage) GetAllTasks() ([]models.Task, error) {
+	s.mu.RLock()
+	defer s.mu.Unlock()
+	tempTasks := make([]models.Task, 0, len(s.Tasks))
+	for _, v := range s.Tasks {
+		tempTasks = append(tempTasks, v)
+	}
+	return tempTasks, nil
+}

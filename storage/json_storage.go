@@ -15,7 +15,11 @@ type JSONStorage struct {
 func NewJSONStorage(file string) (*JSONStorage, error) {
 	storage := &JSONStorage{
 		filename: file,
+		Tasks:    make(map[int]models.Task),
 	}
-	storage.Tasks = make(map[int]models.Task)
+	if err := storage.Load(); err != nil {
+		return nil, err
+	}
+
 	return storage, nil
 }
