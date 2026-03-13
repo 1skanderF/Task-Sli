@@ -14,6 +14,7 @@ func main() {
 		return
 	}
 
+	
 	// Тест 1: Получение всех задач
 	fmt.Println("=== Тест GetAllTasks ===")
 	tasks, err := storage.GetAllTasks()
